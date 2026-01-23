@@ -21,6 +21,10 @@ def check_daughters(file_iter, num):
         data = line.split()
         if data[2] == '11' or data[2] == '-11':
             daughter_particles.append(data)
+        elif data[2] == '1023':
+            dark_particles.append(data)
+            vertex_number = data[11]
+            break
 
 #This funcion finds every 1023 electron which is what we are lloking for
 #and adds it the dark particles list, when it finds a 1023 particle
@@ -45,4 +49,7 @@ with open(sys.argv[1]) as f:
         data = line.split()
         find_electron(file_iter, data)
 
-
+for particle in dark_particles:
+    print(particle)
+for particle in daughter_particles:
+    print(particle)
