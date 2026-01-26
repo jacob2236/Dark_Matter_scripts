@@ -5,6 +5,7 @@
 
 import sys
 import matplotlib.pyplot as plt
+import numpy as np
 
 dark_particles = []
 daughter_particles = []
@@ -25,7 +26,6 @@ def check_daughters(file_iter, num):
         elif data[2] == '1023':
             dark_particles.append(data)
             vertex_number = data[11]
-            break
 
 #This funcion finds every 1023 electron which is what we are lloking for
 #and adds it the dark particles list, when it finds a 1023 particle
@@ -44,7 +44,7 @@ def find_electron(file_iter, data):
 
 def plot_histograms():
     #plots the 1023 particles
-    data = [float(x[7]) for x in dark_particles]
+    data = [np.float64(x[7]) for x in dark_particles]
 
     plt.hist(data, bins=10)  # bins is optional
     plt.xlabel("Energy of Particles")
@@ -53,7 +53,7 @@ def plot_histograms():
     plt.show()
 
     #plots the daughter particles
-    data = [float(x[7]) for x in daughter_particles]
+    data = [np.float64(x[7]) for x in daughter_particles]
 
     plt.hist(data, bins=10)  # bins is optional
     plt.xlabel("Energy of Particles")
