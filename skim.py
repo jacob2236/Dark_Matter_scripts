@@ -4,6 +4,7 @@
 #be the energy of that particle, we need to create histograms of particles vs energy
 
 import sys
+import matplotlib.pyplot as plt
 
 dark_particles = []
 daughter_particles = []
@@ -41,6 +42,25 @@ def find_electron(file_iter, data):
         num_daughters = int(data[8])
         check_daughters(file_iter, num_daughters)
 
+def plot_histograms():
+    #plots the 1023 particles
+    data = [float(x[7]) for x in dark_particles]
+
+    plt.hist(data, bins=10)  # bins is optional
+    plt.xlabel("Energy of Particles")
+    plt.ylabel("Frequency")
+    plt.title("Histogram of 1023 Particles")
+    plt.show()
+
+    #plots the daughter particles
+    data = [float(x[7]) for x in daughter_particles]
+
+    plt.hist(data, bins=10)  # bins is optional
+    plt.xlabel("Energy of Particles")
+    plt.ylabel("Frequency")
+    plt.title("Histogram of daughter Particles")
+    plt.show()
+
 #opens the hep mc file and reads line by line
 with open(sys.argv[1]) as f:
     file_iter = iter(f)
@@ -49,7 +69,9 @@ with open(sys.argv[1]) as f:
         data = line.split()
         find_electron(file_iter, data)
 
-for particle in dark_particles:
-    print(particle)
+#plot_histograms()
+
+#for particle in dark_particles:
+#    print(particle)
 for particle in daughter_particles:
-    print(particle)
+    print(particle[7])
