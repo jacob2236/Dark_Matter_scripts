@@ -69,9 +69,9 @@ with open(sys.argv[1]) as f:
         data = line.split()
         find_electron(file_iter, data)
 
-#plot_histograms()
+plot_histograms()
 
 #for particle in dark_particles:
 #    print(particle)
-for particle in daughter_particles:
-    print(particle[7])
+#for particle in daughter_particles:
+#    print(particle[7])
