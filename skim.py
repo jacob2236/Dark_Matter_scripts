@@ -24,7 +24,7 @@ def check_daughters(file_iter, num):
             break
 
         data = line.split()
-        if data[2] == '11' or data[2] == '-11':
+        if data[2] == '21':
             daughter_particles.append(Particle(data,vertex_number,event_num))
         elif data[2] == '1023':
             dark_particles.append(Particle(data,vertex_number,event_num))
