@@ -1,0 +1,36 @@
+/vis/open OGLSQt
+/vis/verbose warnings
+
+# Camera
+/vis/viewer/set/viewpointThetaPhi 90 180
+/vis/viewer/set/style surface
+/vis/viewer/set/hiddenEdge 1
+/vis/viewer/set/lineSegmentsPerCircle 24
+/vis/viewer/set/auxiliaryEdge false
+
+# Geometry + scene
+/vis/drawVolume
+/vis/scene/add/hits
+
+# Trajectories that show all:
+#/tracking/storeTrajectory 1
+#/vis/modeling/trajectories/create/drawByCharge
+#/vis/scene/add/trajectories smooth
+
+# Trajectories that only show positive and negative:
+# Trajectories
+/tracking/storeTrajectory 1
+/vis/modeling/trajectories/create/drawByParticleID
+/vis/modeling/trajectories/drawByParticleID-0/default/setDrawStepPts false
+
+# Hide gamma tracks
+/vis/modeling/trajectories/drawByParticleID-0/set gamma invisible
+
+# Show trajectories (non-gamma only)
+/vis/scene/add/trajectories smooth
+
+# Event handling
+/vis/scene/endOfEventAction accumulate 1
+/vis/enable
+
+/run/beamOn 1
